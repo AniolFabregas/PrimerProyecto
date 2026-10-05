@@ -35,12 +35,12 @@ namespace FlightLib
             }
         }
 
-        public void Move(double tiempo)
+        public void Mover(double tiempo)
         {
             int i = 0;
             while (i < number)
             {
-                vector[i].Move(tiempo);   // abans era Mover(), pero a la Fase 1 l'hem canviat a Move() com demana l'enunciat
+                vector[i].Move(tiempo);
                 i++;
             }
         }
