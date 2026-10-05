@@ -17,12 +17,12 @@ namespace PlanesVuelo
         FlightPlan planA;
         FlightPlan planB;
         double tiempoCiclo;
-        
+
         FlightPlanList miLista;
         private FlightPlan avion1;
         private FlightPlan avion2;
         public double distanciaSeguridad;
-       
+
 
 
         public Simulacion()
@@ -40,11 +40,11 @@ namespace PlanesVuelo
             avion2 = plan;
         }
 
-        //private void nuevoPuntoToolStripMenuItem_Click(object sender, EventArgs e)
+       
 
         private void Simulacion_MouseClick(object sender, MouseEventArgs e)
         {
-            // Mida aproximada de la icona de l'avió per fer clic sobre ell (p. ex., un quadrat de 20x20 o marge de 15px)
+            
 
 
             if (avion2 != null)
@@ -52,9 +52,9 @@ namespace PlanesVuelo
                 double x2 = avion2.GetCurrentPosition().GetX();
                 double y2 = avion2.GetCurrentPosition().GetY();
 
-             
-     
-            if (avion1 != null)
+
+
+                if (avion1 != null)
                 {
                     double x1 = avion1.GetCurrentPosition().GetX();
                     double y1 = avion1.GetCurrentPosition().GetY();
@@ -64,10 +64,14 @@ namespace PlanesVuelo
 
         private void Simulacion_Load(object sender, EventArgs e)
         {
-         
-
+            
+            if (avion1 != null && avion2 != null)
+            {
+                avionA.Location = convertirAPixeles(avion1.GetInitialPosition());   //l'avio A on surt el pla 1
+                avionB.Location = convertirAPixeles(avion2.GetInitialPosition());   //l'avio B on surt el pla 2
+            }
         }
-        
+
 
 
         private void ShowFlightInfo(object sender, EventArgs e)
@@ -93,16 +97,32 @@ namespace PlanesVuelo
         {
         }
 
+        //FASE 4: MOURE ELS AVIONS UN CICLE
+
         private void btnMover_Click(object sender, EventArgs e)
         {
-            double tiempoCiclo = 1.0; // El tiempo configurado en la Fase 2
+            //si encara no tenim els dos plans de vol no podem moure res
+            if (avion1 == null || avion2 == null)
+            {
+                MessageBox.Show("Primero hay que introducir los datos de los dos vuelos");
+                return;                         
+            }
 
-            // Mover los aviones
-            avion1.Move(tiempoCiclo);
-            avion2.Move(tiempoCiclo);
+            avion1.Move(tiempoCiclo);          
+            avion2.Move(tiempoCiclo);          
 
-            // Forzar al formulario a repintarse (vuelve a llamar al evento Paint)
-            this.Invalidate();
+            
+            avionA.Location = convertirAPixeles(avion1.GetCurrentPosition());
+            avionB.Location = convertirAPixeles(avion2.GetCurrentPosition());
+
+            miPanel.Invalidate();               
+
+            
+            if (avion1.HasArrived() && avion2.HasArrived())
+            {
+                btnMover.Enabled = false;       // apaguem el boto perque no es pugui clicar mes
+                MessageBox.Show("Los dos aviones han llegado a su destino");   
+            }
         }
 
         private void FormSimulacion_Paint(object sender, PaintEventArgs e)
@@ -122,7 +142,7 @@ namespace PlanesVuelo
             }
         }
 
-            private void DibujarDistanciaSeguridad(Graphics g, FlightPlan avion, double radioSeguridad, Pen colorLina)
+        private void DibujarDistanciaSeguridad(Graphics g, FlightPlan avion, double radioSeguridad, Pen colorLina)
         {
             // 1. Obtener la posición actual del avión (en píxeles)
             float avionX = (float)avion.GetCurrentPosition().GetX();
@@ -146,35 +166,35 @@ namespace PlanesVuelo
 
         private void Simulacion_Paint(object sender, PaintEventArgs e)
         {
-          
+
             Graphics g = e.Graphics;
 
             if (avion2 != null)
             {
-                // Obtenim X i Y del punt d'origen
+                
                 float origenX2 = (float)avion2.GetInitialPosition().GetX();
                 float origenY2 = (float)avion2.GetInitialPosition().GetY();
 
-                // Obtenim X i Y del punt de destí
+               
                 float destiX2 = (float)avion2.GetFinalPosition().GetX();
                 float destiY2 = (float)avion2.GetFinalPosition().GetY();
 
-                // Dibuixem la línia entre origen i destí (color Blau)
+                
                 g.DrawLine(Pens.Blue, origenX2, origenY2, destiX2, destiY2);
             }
 
-            // Dibuixar trajectòria de l'Avió 1
+            //dibuixar trajectoria avio 1
             if (avion1 != null)
             {
-                // Obtenim X i Y del punt d'origen
+               
                 float origenX1 = (float)avion1.GetInitialPosition().GetX();
                 float origenY1 = (float)avion1.GetInitialPosition().GetY();
 
-                // Obtenim X i Y del punt de destí
+              
                 float destiX1 = (float)avion1.GetFinalPosition().GetX();
                 float destiY1 = (float)avion1.GetFinalPosition().GetY();
 
-                // Dibuixem la línia entre origen i destí (color Blau)
+               
                 g.DrawLine(Pens.Blue, origenX1, origenY1, destiX1, destiY1);
             }
         }
@@ -184,5 +204,5 @@ namespace PlanesVuelo
 
         }
     }
-    }
+}
 

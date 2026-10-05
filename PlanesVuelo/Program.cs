@@ -16,7 +16,9 @@ namespace PlanesVuelo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PlanesVuelo());
+            //el programa ha d'arrencar pel menu i no pel formulari de dades
+            Application.Run(new Form1());
         }
     }
 }
+
