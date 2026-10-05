@@ -35,27 +35,53 @@ namespace PlanesVuelo
             try
             {
                 valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Se ha producido un error en el formato de la distancia de seguridad");
-                return;
-            }
 
-
-            try
-            {
+                // 2. Guardar o tempo de ciclo
                 valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
+
+                // 3. Fechar a janela
+                this.Close();
             }
             catch (FormatException)
             {
-                MessageBox.Show("Se ha producido un error en el formato del tiempo de ciclo");
+                MessageBox.Show("Se ha producido un error en los formatos de texto");
                 return;
             }
             Close();
         }
 
         private void DatosSimulacion_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //asignamos el valor a las variables y comprobamos que el formato del textbox sea valido
+            try
+            {
+                valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
+
+                // 2. Guardar o tempo de ciclo
+                valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
+
+                // 3. Fechar a janela
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Se ha producido un error en los formatos de texto");
+                return;
+            }
+            Close();
+        }
+
+        private void distanciaSeguridad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tiempoCiclo_TextChanged(object sender, EventArgs e)
         {
 
         }

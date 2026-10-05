@@ -119,7 +119,15 @@ namespace FlightLib
         public bool HasArrived()
         {
             double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);
-            return distanciaQueFalta < TOLERANCIA;
+            bool resultado = false;
+            if (distanciaQueFalta == tolerancia)
+            {
+                resultado = true;
+
+                return resultado;
+            }
+            else
+                return false;
         }
 
         public void Restart()

@@ -13,9 +13,6 @@ namespace SimulatorConsole
         static FlightPlanList lista = new FlightPlanList();
         static void Main(string[] args)
         {
-            ProbarFase1();                                                        // primer de tot fem les proves de la Fase 1 i les ensenyem per pantalla
-            Console.WriteLine("Pulsa ENTER para continuar con el simulador...");  // avisem que cal apretar enter
-            Console.ReadLine();                                                   // ens esperem fins que l'usuari apreti enter
             try
             {
                 Console.WriteLine("Escribe el identificador");
@@ -72,8 +69,8 @@ namespace SimulatorConsole
 
                 while (i < ciclos)
                 {
-                    lista.Mover(tiempoCiclo);
-
+                    lista.Move(tiempoCiclo);
+                    
                     lista.EscribeConsola();
                     if (plan_a.Conflicto(plan_b, distanciaSeguridad))
                         Console.WriteLine("Conflicto");
@@ -169,4 +166,3 @@ namespace SimulatorConsole
         }
     }
 }
-
