@@ -43,6 +43,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Aceptar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -59,6 +60,7 @@
             this.distanciaSeguridad.Name = "distanciaSeguridad";
             this.distanciaSeguridad.Size = new System.Drawing.Size(100, 22);
             this.distanciaSeguridad.TabIndex = 2;
+            this.distanciaSeguridad.TextChanged += new System.EventHandler(this.distanciaSeguridad_TextChanged);
             // 
             // label2
             // 
@@ -75,6 +77,7 @@
             this.tiempoCiclo.Name = "tiempoCiclo";
             this.tiempoCiclo.Size = new System.Drawing.Size(100, 22);
             this.tiempoCiclo.TabIndex = 4;
+            this.tiempoCiclo.TextChanged += new System.EventHandler(this.tiempoCiclo_TextChanged);
             // 
             // DatosSimulacion
             // 

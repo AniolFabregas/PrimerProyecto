@@ -113,7 +113,7 @@ namespace FlightLib
         {
             double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);
             bool resultado = false;
-            if (distanciaQueFalta == tolerancia)
+            if (distanciaQueFalta <= tolerancia)
             {
                 resultado = true;
 

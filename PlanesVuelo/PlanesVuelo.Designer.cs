@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.aceptar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.id1 = new System.Windows.Forms.TextBox();
             this.identificador1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.velocidad1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.identificador2 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.id2 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.coordenadaActualX2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -57,14 +57,15 @@
             this.valorVelocidad2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // aceptar
             // 
-            this.button1.Location = new System.Drawing.Point(690, 402);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Aceptar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.aceptar.Location = new System.Drawing.Point(690, 402);
+            this.aceptar.Name = "aceptar";
+            this.aceptar.Size = new System.Drawing.Size(75, 23);
+            this.aceptar.TabIndex = 0;
+            this.aceptar.Text = "Aceptar";
+            this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -75,12 +76,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Plan de vuelo 1";
             // 
-            // textBox1
+            // id1
             // 
-            this.textBox1.Location = new System.Drawing.Point(149, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 2;
+            this.id1.Location = new System.Drawing.Point(149, 38);
+            this.id1.Name = "id1";
+            this.id1.Size = new System.Drawing.Size(100, 22);
+            this.id1.TabIndex = 2;
             // 
             // identificador1
             // 
@@ -189,12 +190,12 @@
             this.identificador2.TabIndex = 15;
             this.identificador2.Text = "Identificador:";
             // 
-            // textBox7
+            // id2
             // 
-            this.textBox7.Location = new System.Drawing.Point(159, 318);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 22);
-            this.textBox7.TabIndex = 16;
+            this.id2.Location = new System.Drawing.Point(159, 318);
+            this.id2.Name = "id2";
+            this.id2.Size = new System.Drawing.Size(100, 22);
+            this.id2.TabIndex = 16;
             // 
             // label10
             // 
@@ -291,7 +292,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.coordenadaActualX2);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.id2);
             this.Controls.Add(this.identificador2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.velocidad1);
@@ -305,9 +306,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.identificador1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.id1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.aceptar);
             this.Name = "PlanesVuelo";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -318,9 +319,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox id1;
         private System.Windows.Forms.Label identificador1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -334,7 +335,7 @@
         private System.Windows.Forms.TextBox velocidad1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label identificador2;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox id2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox coordenadaActualX2;
         private System.Windows.Forms.Label label11;

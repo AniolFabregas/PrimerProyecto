@@ -62,18 +62,21 @@
             this.planesDeVueloToolStripMenuItem.Name = "planesDeVueloToolStripMenuItem";
             this.planesDeVueloToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.planesDeVueloToolStripMenuItem.Text = "Planes de Vuelo";
+            this.planesDeVueloToolStripMenuItem.Click += new System.EventHandler(this.planesDeVueloToolStripMenuItem_Click);
             // 
             // datosDeSimulaciónToolStripMenuItem
             // 
             this.datosDeSimulaciónToolStripMenuItem.Name = "datosDeSimulaciónToolStripMenuItem";
             this.datosDeSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.datosDeSimulaciónToolStripMenuItem.Text = "Datos de Simulación";
+            this.datosDeSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.datosDeSimulaciónToolStripMenuItem_Click);
             // 
             // iniciarSimulaciónToolStripMenuItem
             // 
             this.iniciarSimulaciónToolStripMenuItem.Name = "iniciarSimulaciónToolStripMenuItem";
             this.iniciarSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.iniciarSimulaciónToolStripMenuItem.Text = "Iniciar Simulación";
+            this.iniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSimulaciónToolStripMenuItem_Click);
             // 
             // Form1
             // 

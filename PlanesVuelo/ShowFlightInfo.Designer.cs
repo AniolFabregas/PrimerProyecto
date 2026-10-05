@@ -48,7 +48,7 @@
             this.Controls.Add(this.lblInformacion);
             this.Name = "ShowFlightInfo";
             this.Text = "ShowFlightInfo";
-            this.Load += new System.EventHandler(this.ShowFlightInfo_Load);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

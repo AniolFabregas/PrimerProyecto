@@ -28,24 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.miPanel = new System.Windows.Forms.DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Simulacion));
             this.btnMover = new System.Windows.Forms.Button();
             this.avionA = new System.Windows.Forms.PictureBox();
             this.avionB = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.miPanel)).BeginInit();
+            this.miPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
+            this.miPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // miPanel
-            // 
-            this.miPanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.miPanel.Location = new System.Drawing.Point(238, 30);
-            this.miPanel.Name = "miPanel";
-            this.miPanel.RowHeadersWidth = 51;
-            this.miPanel.RowTemplate.Height = 24;
-            this.miPanel.Size = new System.Drawing.Size(550, 408);
-            this.miPanel.TabIndex = 0;
             // 
             // btnMover
             // 
@@ -55,48 +46,62 @@
             this.btnMover.TabIndex = 1;
             this.btnMover.Text = "Ciclo";
             this.btnMover.UseVisualStyleBackColor = true;
-            this.btnMover.Click += new System.EventHandler(this.button1_Click);
+            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
             // 
             // avionA
             // 
-            this.avionA.Location = new System.Drawing.Point(280, 63);
+            this.avionA.Image = ((System.Drawing.Image)(resources.GetObject("avionA.Image")));
+            this.avionA.Location = new System.Drawing.Point(18, 21);
             this.avionA.Name = "avionA";
-            this.avionA.Size = new System.Drawing.Size(100, 50);
+            this.avionA.Size = new System.Drawing.Size(30, 30);
+            this.avionA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avionA.TabIndex = 2;
             this.avionA.TabStop = false;
+            this.avionA.Click += new System.EventHandler(this.avionA_Click);
             // 
             // avionB
             // 
-            this.avionB.Location = new System.Drawing.Point(280, 172);
+            this.avionB.Image = ((System.Drawing.Image)(resources.GetObject("avionB.Image")));
+            this.avionB.Location = new System.Drawing.Point(18, 252);
             this.avionB.Name = "avionB";
-            this.avionB.Size = new System.Drawing.Size(100, 50);
+            this.avionB.Size = new System.Drawing.Size(30, 30);
+            this.avionB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avionB.TabIndex = 3;
             this.avionB.TabStop = false;
+            this.avionB.Click += new System.EventHandler(this.avionB_Click);
+            // 
+            // miPanel
+            // 
+            this.miPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.miPanel.Controls.Add(this.avionA);
+            this.miPanel.Controls.Add(this.avionB);
+            this.miPanel.Location = new System.Drawing.Point(300, 12);
+            this.miPanel.Name = "miPanel";
+            this.miPanel.Size = new System.Drawing.Size(465, 426);
+            this.miPanel.TabIndex = 4;
+            this.miPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Simulacion_Paint);
             // 
             // Simulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.avionB);
-            this.Controls.Add(this.avionA);
-            this.Controls.Add(this.btnMover);
             this.Controls.Add(this.miPanel);
+            this.Controls.Add(this.btnMover);
             this.Name = "Simulacion";
             this.Text = "Simulacion";
             this.Load += new System.EventHandler(this.Simulacion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.miPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).EndInit();
+            this.miPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView miPanel;
         private System.Windows.Forms.Button btnMover;
         private System.Windows.Forms.PictureBox avionA;
         private System.Windows.Forms.PictureBox avionB;
+        private System.Windows.Forms.Panel miPanel;
     }
 }

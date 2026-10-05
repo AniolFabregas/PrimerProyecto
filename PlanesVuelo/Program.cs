@@ -16,7 +16,7 @@ namespace PlanesVuelo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PlanesVuelo());
+            Application.Run(new Form1());
         }
     }
 }
