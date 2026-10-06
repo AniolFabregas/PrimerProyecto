@@ -35,9 +35,9 @@
             this.iniciarSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
+            
+            //menuStrip1
+            
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.datosToolStripMenuItem});
@@ -46,9 +46,9 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // datosToolStripMenuItem
-            // 
+            
+            //datosToolStripMenuItem
+            
             this.datosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.planesDeVueloToolStripMenuItem,
             this.datosDeSimulaciónToolStripMenuItem,
@@ -56,27 +56,24 @@
             this.datosToolStripMenuItem.Name = "datosToolStripMenuItem";
             this.datosToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.datosToolStripMenuItem.Text = "Datos";
-            // 
-            // planesDeVueloToolStripMenuItem
-            // 
+            
+            //planesDeVueloToolStripMenuItem
+            
             this.planesDeVueloToolStripMenuItem.Name = "planesDeVueloToolStripMenuItem";
             this.planesDeVueloToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.planesDeVueloToolStripMenuItem.Text = "Planes de Vuelo";
-            this.planesDeVueloToolStripMenuItem.Click += new System.EventHandler(this.planesDeVueloToolStripMenuItem_Click);
             // 
             // datosDeSimulaciónToolStripMenuItem
             // 
             this.datosDeSimulaciónToolStripMenuItem.Name = "datosDeSimulaciónToolStripMenuItem";
             this.datosDeSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.datosDeSimulaciónToolStripMenuItem.Text = "Datos de Simulación";
-            this.datosDeSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.datosDeSimulaciónToolStripMenuItem_Click);
             // 
             // iniciarSimulaciónToolStripMenuItem
             // 
             this.iniciarSimulaciónToolStripMenuItem.Name = "iniciarSimulaciónToolStripMenuItem";
             this.iniciarSimulaciónToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.iniciarSimulaciónToolStripMenuItem.Text = "Iniciar Simulación";
-            this.iniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSimulaciónToolStripMenuItem_Click);
             // 
             // Form1
             // 

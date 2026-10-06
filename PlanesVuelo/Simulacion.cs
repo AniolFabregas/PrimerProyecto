@@ -41,27 +41,33 @@ namespace PlanesVuelo
             avion2 = plan;
         }
 
-        public void ponTiempoCiclo(double tiempo)
-        {
-            tiempoCiclo = tiempo;
-        }
+        //private void nuevoPuntoToolStripMenuItem_Click(object sender, EventArgs e)
 
-        public void ponDistanciaSeguridad(double distancia)
+        private void Simulacion_MouseClick(object sender, MouseEventArgs e)
         {
-            distanciaSeguridad = distancia;
+            // Mida aproximada de la icona de l'avió per fer clic sobre ell (p. ex., un quadrat de 20x20 o marge de 15px)
+
+
+            if (avion2 != null)
+            {
+                double x2 = avion2.GetCurrentPosition().GetX();
+                double y2 = avion2.GetCurrentPosition().GetY();
+
+             
+     
+            if (avion1 != null)
+                {
+                    double x1 = avion1.GetCurrentPosition().GetX();
+                    double y1 = avion1.GetCurrentPosition().GetY();
+                }
+            }
         }
 
         // 3. Al carregar la finestra, posicionem els PictureBox (avionA i avionB)
         private void Simulacion_Load(object sender, EventArgs e)
         {
-            avionA.BackColor = Color.Red;
-            avionB.BackColor = Color.Blue;
+         
 
-            avion1.Restart();
-            avion2.Restart();
-
-            avionA.Location = posicionAvion(avion1);
-            avionB.Location = posicionAvion(avion2);
         }
 
         private void btnMover_Click(object sender, EventArgs e)
@@ -78,7 +84,16 @@ namespace PlanesVuelo
                 avionB.Location = posicionAvion(avion2);
             }
 
-            miPanel.Invalidate();   
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            double tiempoCiclo = 1.0; // El tiempo configurado en la Fase 2
+
+            // Mover los aviones
+            avion1.Move(tiempoCiclo);
+            avion2.Move(tiempoCiclo);
+
+            // Forzar al formulario a repintarse (vuelve a llamar al evento Paint)
+            this.Invalidate();
         }
 
         private void Simulacion_Paint(object sender, PaintEventArgs e)
@@ -103,6 +118,11 @@ namespace PlanesVuelo
             g.DrawEllipse(lapiz, centro.X - radio, centro.Y - radio, radio * 2, radio * 2);
         }
 
+            private void DibujarDistanciaSeguridad(Graphics g, FlightPlan avion, double radioSeguridad, Pen colorLina)
+        {
+            // 1. Obtener la posición actual del avión (en píxeles)
+            float avionX = (float)avion.GetCurrentPosition().GetX();
+            float avionY = (float)avion.GetCurrentPosition().GetY();
 
          
 
@@ -123,26 +143,37 @@ namespace PlanesVuelo
 // Mostrar informació dels avions al fer clic a sobre
 private void ShowFlightInfo(object sender, EventArgs e)
         {
-            ShowFlightInfo f = new ShowFlightInfo();
-            if (avion1 != null) f.MostrarDatos(avion1);
-            if (avion2 != null) f.MostrarDatos(avion2);
-            f.ShowDialog();
-        }
+          
+            Graphics g = e.Graphics;
 
-        private void avionA_Click(object sender, EventArgs e)
-        {
-            ShowFlightInfo f = new ShowFlightInfo();
-            f.MostrarDatos(avion1);
-            f.ShowDialog();
-        }
+            if (avion2 != null)
+            {
+                // Obtenim X i Y del punt d'origen
+                float origenX2 = (float)avion2.GetInitialPosition().GetX();
+                float origenY2 = (float)avion2.GetInitialPosition().GetY();
 
+                // Obtenim X i Y del punt de destí
+                float destiX2 = (float)avion2.GetFinalPosition().GetX();
+                float destiY2 = (float)avion2.GetFinalPosition().GetY();
 
+                // Dibuixem la línia entre origen i destí (color Blau)
+                g.DrawLine(Pens.Blue, origenX2, origenY2, destiX2, destiY2);
+            }
 
-        private void avionB_Click(object sender, EventArgs e)
-        {
-            ShowFlightInfo f = new ShowFlightInfo();
-            f.MostrarDatos(avion2);
-            f.ShowDialog();
+            // Dibuixar trajectòria de l'Avió 1
+            if (avion1 != null)
+            {
+                // Obtenim X i Y del punt d'origen
+                float origenX1 = (float)avion1.GetInitialPosition().GetX();
+                float origenY1 = (float)avion1.GetInitialPosition().GetY();
+
+                // Obtenim X i Y del punt de destí
+                float destiX1 = (float)avion1.GetFinalPosition().GetX();
+                float destiY1 = (float)avion1.GetFinalPosition().GetY();
+
+                // Dibuixem la línia entre origen i destí (color Blau)
+                g.DrawLine(Pens.Blue, origenX1, origenY1, destiX1, destiY1);
+            }
         }
 
         private void iniciarSimulacion_Click(object sender, EventArgs e)
