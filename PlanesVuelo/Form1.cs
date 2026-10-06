@@ -25,7 +25,7 @@ namespace PlanesVuelo
         private void planesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlanesVuelo f = new PlanesVuelo();
-            f.ShowDialog(); // O abre el formulario modalmente
+            f.ShowDialog(); 
             
         }
 
@@ -62,7 +62,7 @@ namespace PlanesVuelo
             f.ponPlanA(planA);
             f.ponPlanB(planB);
             f.ponTiempoCiclo(valorTiempoCiclo);
-            f.ponDistanciaSeguridad(valorDistanciaSeguridad);   // línia nova
+            f.ponDistanciaSeguridad(valorDistanciaSeguridad);   
             f.ShowDialog();
 
           

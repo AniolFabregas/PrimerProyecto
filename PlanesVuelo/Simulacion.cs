@@ -16,6 +16,7 @@ namespace PlanesVuelo
     {
        
         double tiempoCiclo;
+        double tiempo;
 
 
         private FlightPlan avion1;
@@ -63,7 +64,6 @@ namespace PlanesVuelo
             avionB.Location = posicionAvion(avion2);
         }
 
-        // 4. Moure els avions quan es clica el botó
         private void btnMover_Click(object sender, EventArgs e)
         {
             if (!avion1.HasArrived())
@@ -81,7 +81,6 @@ namespace PlanesVuelo
             miPanel.Invalidate();   
         }
 
-        // 5. UNIFICACIÓ DEL PAINT (Fase 6 i Fase 7)
         private void Simulacion_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -146,7 +145,39 @@ private void ShowFlightInfo(object sender, EventArgs e)
             f.ShowDialog();
         }
 
+        private void iniciarSimulacion_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+       
+            }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!avion1.HasArrived())
+            {
+                avion1.Move(tiempoCiclo);
+                avionA.Location = posicionAvion(avion1);
+            }
+
+            if (!avion2.HasArrived())
+            {
+                avion2.Move(tiempoCiclo);
+                avionB.Location = posicionAvion(avion2);
+            }
+
+            miPanel.Invalidate();
+
+            if (avion1.HasArrived() && avion2.HasArrived())
+            {
+                timer1.Stop();
+            }
+        }
+
+        private void detenerSimulacion_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
     }
-}
+    }
+
 

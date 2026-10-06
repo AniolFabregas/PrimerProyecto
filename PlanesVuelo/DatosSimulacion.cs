@@ -36,10 +36,8 @@ namespace PlanesVuelo
             {
                 valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
 
-                // 2. Guardar o tempo de ciclo
                 valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
 
-                // 3. Fechar a janela
                 this.Close();
             }
             catch (FormatException)
@@ -62,10 +60,8 @@ namespace PlanesVuelo
             {
                 valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
 
-                // 2. Guardar o tempo de ciclo
                 valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
 
-                // 3. Fechar a janela
                 this.Close();
             }
             catch (FormatException)

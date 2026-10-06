@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Simulacion));
             this.btnMover = new System.Windows.Forms.Button();
             this.avionA = new System.Windows.Forms.PictureBox();
             this.avionB = new System.Windows.Forms.PictureBox();
             this.miPanel = new System.Windows.Forms.Panel();
+            this.iniciarSimulacion = new System.Windows.Forms.Button();
+            this.detenerSimulacion = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
             this.miPanel.SuspendLayout();
@@ -81,11 +85,37 @@
             this.miPanel.TabIndex = 4;
             this.miPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Simulacion_Paint);
             // 
+            // iniciarSimulacion
+            // 
+            this.iniciarSimulacion.Location = new System.Drawing.Point(30, 136);
+            this.iniciarSimulacion.Name = "iniciarSimulacion";
+            this.iniciarSimulacion.Size = new System.Drawing.Size(133, 23);
+            this.iniciarSimulacion.TabIndex = 5;
+            this.iniciarSimulacion.Text = "Iniciar simulación";
+            this.iniciarSimulacion.UseVisualStyleBackColor = true;
+            this.iniciarSimulacion.Click += new System.EventHandler(this.iniciarSimulacion_Click);
+            // 
+            // detenerSimulacion
+            // 
+            this.detenerSimulacion.Location = new System.Drawing.Point(33, 192);
+            this.detenerSimulacion.Name = "detenerSimulacion";
+            this.detenerSimulacion.Size = new System.Drawing.Size(130, 23);
+            this.detenerSimulacion.TabIndex = 6;
+            this.detenerSimulacion.Text = "Detener simulación";
+            this.detenerSimulacion.UseVisualStyleBackColor = true;
+            this.detenerSimulacion.Click += new System.EventHandler(this.detenerSimulacion_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Simulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.detenerSimulacion);
+            this.Controls.Add(this.iniciarSimulacion);
             this.Controls.Add(this.miPanel);
             this.Controls.Add(this.btnMover);
             this.Name = "Simulacion";
@@ -103,5 +133,8 @@
         private System.Windows.Forms.PictureBox avionA;
         private System.Windows.Forms.PictureBox avionB;
         private System.Windows.Forms.Panel miPanel;
+        private System.Windows.Forms.Button iniciarSimulacion;
+        private System.Windows.Forms.Button detenerSimulacion;
+        private System.Windows.Forms.Timer timer1;
     }
 }

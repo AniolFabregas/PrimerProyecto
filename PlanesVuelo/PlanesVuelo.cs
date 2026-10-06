@@ -56,30 +56,7 @@ namespace PlanesVuelo
 
         }
 
-        private void aceptar_Click(object sender, EventArgs e)
-        {
-            string textoid1 = id1.Text;
-            double origX1 = Convert.ToDouble(actualX1.Text);
-            double origY1 = Convert.ToDouble(actualY1.Text);
-            double destX1 = Convert.ToDouble(finalX1.Text);
-            double destY1 = Convert.ToDouble(finalY1.Text);
-            double vel1 = Convert.ToDouble(velocidad1.Text);
-
-            // 2. Llegir les dades dels TextBox de l'Avió 2
-            string textoid2 = id2.Text;
-            double origX2 = Convert.ToDouble(coordenadaActualX2.Text);
-            double origY2 = Convert.ToDouble(coordenadaActualY2.Text);
-            double destX2 = Convert.ToDouble(coordenadaFinalX2.Text);
-            double destY2 = Convert.ToDouble(coordenadaFinalY2.Text);
-            double vel2 = Convert.ToDouble(valorVelocidad2.Text);
-            FlightPlan plan1 = new FlightPlan(textoid1, origX1, origY1, destX1, destY1, vel1);
-            FlightPlan plan2 = new FlightPlan(textoid2, origX2, origY2, destX2, destY2, vel2);
-
-            Form1.planA = plan1;
-            Form1.planB = plan2;
-            this.Close();
-
-        }
+    
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -22,7 +22,6 @@ namespace PlanesVuelo
         {
             if (avion != null)
             {
-                // Suposant que tens un Label anomenat lblInformacion
                 lblInformacion.Text = "Identificador: " + avion.GetId() + "\n" +
                                       "Velocitat: " + avion.GetVelocidad() + "\n" +
                                       "Posició actual: (" + avion.GetCurrentPosition().GetX().ToString("F2") +
@@ -41,7 +40,8 @@ namespace PlanesVuelo
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
         }
