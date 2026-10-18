@@ -29,7 +29,7 @@ namespace PlanesVuelo
             }
         }
 
-      
+
         public void SetFlight(FlightPlan f)
         {
             this.myFlight = f;
@@ -44,6 +44,10 @@ namespace PlanesVuelo
         private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ShowFlightInfo_Load(object sender, EventArgs e)
+        {
         }
     }
 }

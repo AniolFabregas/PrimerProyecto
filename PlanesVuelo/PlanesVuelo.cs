@@ -75,16 +75,7 @@ namespace PlanesVuelo
             double destY2 = Convert.ToDouble(coordenadaFinalY2.Text);
             double vel2 = Convert.ToDouble(valorVelocidad2 .Text);
 
-            // 3. Crear els dos objectes FlightPlan (Fase 2)
-            FlightPlan plan1 = new FlightPlan(textoid1, origX1, origY1, destX1, destY1, vel1);
-            FlightPlan plan2 = new FlightPlan(textoid2, origX2, origY2, destX2, destY2, vel2);
-
-            Form1.planA = plan1;
-            Form1.planB = plan2;
-
-
-            // 5. TANCAR AQUEST FORMULARI per tornar a la pantalla principal
-            this.Close();
         }
     } 
 }
+
