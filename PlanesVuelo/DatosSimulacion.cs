@@ -29,25 +29,7 @@ namespace PlanesVuelo
         {
             return valorTiempoCiclo;
         }
-        private void aceptar_Click(object sender, EventArgs e)
-        {
-            //asignamos el valor a las variables y comprobamos que el formato del textbox sea valido
-            try
-            {
-                valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
-
-                valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
-
-                this.Close();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Se ha producido un error en los formatos de texto");
-                return;
-            }
-            Close();
-        }
-
+       
         private void DatosSimulacion_Load(object sender, EventArgs e)
         {
 
@@ -55,7 +37,7 @@ namespace PlanesVuelo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //asignamos el valor a las variables y comprobamos que el formato del textbox sea valido
+            //Assignem el valor a les variables obtingudes dels textbox
             try
             {
                 valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);

@@ -51,7 +51,7 @@ namespace PlanesVuelo
 
         private void iniciarSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Comprovem que s'hagin après/introduït les dades
+            // Comprovem que s'hagin introduït les dades
             if (planA == null || planB == null)
             {
                 MessageBox.Show("Primer has d'introduir els Planes de Vuelo!");

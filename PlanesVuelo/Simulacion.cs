@@ -17,6 +17,7 @@ namespace PlanesVuelo
        
         double tiempoCiclo;
         double tiempo;
+        bool comprobado = false;
 
 
         private FlightPlan avion1;
@@ -78,20 +79,31 @@ namespace PlanesVuelo
                 avionB.Location = posicionAvion(avion2);
             }
 
-            miPanel.Invalidate();   
+            miPanel.Invalidate();
+
+            if (avion1.Distance(avion2) < distanciaSeguridad)
+            {
+                lblAlarma.Text = "¡ALERTA! Distancia de seguridad vulnerada";
+                lblAlarma.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblAlarma.Text = "Distancia correcta";
+                lblAlarma.ForeColor = Color.Green;
+            }
         }
 
         private void Simulacion_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
 
-            // Trayectorias
+            // Dibuixem les línies de trajectòria dels avions
             g.DrawLine(Pens.Red, convertirAPixeles(avion1.GetInitialPosition()),
                                  convertirAPixeles(avion1.GetFinalPosition()));
             g.DrawLine(Pens.Blue, convertirAPixeles(avion2.GetInitialPosition()),
                                   convertirAPixeles(avion2.GetFinalPosition()));
 
-            // Elipses de seguridad
+            // Dibuixem les el·lipses de seguretat al voltant dels avions
             DibujarElipse(g, avion1, Pens.Red);
             DibujarElipse(g, avion2, Pens.Blue);
         }
@@ -104,9 +116,9 @@ namespace PlanesVuelo
         }
 
 
-         
 
-        // Mètode auxiliar de conversió a píxels
+
+        // Mètode per assignar a cada píxel del panell la posició corresponent a la posició de l'avió en el pla de vol
         private Point convertirAPixeles(Position posicion)
         {
             int x = Convert.ToInt32(posicion.GetX());
@@ -120,14 +132,8 @@ namespace PlanesVuelo
              return new Point(p.X - avionA.Width / 2, p.Y - avionA.Height / 2);
           }
 
-// Mostrar informació dels avions al fer clic a sobre
-private void ShowFlightInfo(object sender, EventArgs e)
-        {
-            ShowFlightInfo f = new ShowFlightInfo();
-            if (avion1 != null) f.MostrarDatos(avion1);
-            if (avion2 != null) f.MostrarDatos(avion2);
-            f.ShowDialog();
-        }
+         // Mostrar informació dels avions al fer clic a sobre
+
 
         private void avionA_Click(object sender, EventArgs e)
         {
@@ -147,9 +153,40 @@ private void ShowFlightInfo(object sender, EventArgs e)
 
         private void iniciarSimulacion_Click(object sender, EventArgs e)
         {
+            if (!comprobado)
+            {
+                comprobado = true;
+
+                if (HayConflicto())
+                {
+                    DialogResult r = MessageBox.Show(
+                        "Los vuelos entrarán en conflicto. ¿Quieres resolverlo?",
+                        "Conflicto", MessageBoxButtons.YesNo);
+
+                    if (r == DialogResult.Yes)
+                        ResolverConflicto();
+                }
+                ColocarAviones();
+            }
             timer1.Start();
        
             }
+
+        private void ResolverConflicto()
+        {
+            bool conflicto = HayConflicto();
+
+            while (conflicto && avion2.GetVelocidad() > 1)
+            {
+                avion2.SetVelocidad(avion2.GetVelocidad() * 0.9);
+                conflicto = HayConflicto();
+            }
+
+            if (conflicto)
+                MessageBox.Show("No se ha podido resolver el conflicto.");
+            else
+                MessageBox.Show("Conflicto resuelto. Nueva velocidad: " + avion2.GetVelocidad().ToString("F2"));
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -171,11 +208,82 @@ private void ShowFlightInfo(object sender, EventArgs e)
             {
                 timer1.Stop();
             }
+
+            if (avion1.Distance(avion2) < distanciaSeguridad)
+            {
+                lblAlarma.Text = "¡ALERTA! Distancia de seguridad vulnerada";
+                lblAlarma.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblAlarma.Text = "Distancia correcta";
+                lblAlarma.ForeColor = Color.Green;
+            }
         }
 
         private void detenerSimulacion_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DatosVuelos f = new DatosVuelos();
+            f.ponPlanes(avion1, avion2);
+            f.ShowDialog();
+        }
+
+        private void lblInformacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool HayConflicto()
+        {
+            bool conflicto = false;
+
+            // Comencem des del principi
+            avion1.Restart();
+            avion2.Restart();
+
+            
+            if (avion1.Conflicto(avion2, distanciaSeguridad))
+                conflicto = true;
+
+            // Movem els avions cicle a cicle fins que arribin a la seva destinació
+            while (!avion1.HasArrived() || !avion2.HasArrived())
+            {
+                avion1.Move(tiempoCiclo);
+                avion2.Move(tiempoCiclo);
+
+                if (avion1.Conflicto(avion2, distanciaSeguridad))
+                    conflicto = true;
+            }
+
+            // Deixem els avions un altre cop a l'origen per a que es pugui tornar a simular
+            avion1.Restart();
+            avion2.Restart();
+
+            return conflicto;
+        }
+
+        private void ColocarAviones()
+        {
+            avionA.Location = posicionAvion(avion1);
+            avionB.Location = posicionAvion(avion2);
+            miPanel.Invalidate();
+        }
+
+        private void btnConflicto_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            if (HayConflicto())
+                MessageBox.Show("Los vuelos entrarán en conflicto.");
+            else
+                MessageBox.Show("Los vuelos no entrarán en conflicto.");
+
+            ColocarAviones();
         }
     }
     }

@@ -37,6 +37,9 @@
             this.iniciarSimulacion = new System.Windows.Forms.Button();
             this.detenerSimulacion = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnDatos = new System.Windows.Forms.Button();
+            this.btnConflicto = new System.Windows.Forms.Button();
+            this.lblAlarma = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
             this.miPanel.SuspendLayout();
@@ -79,9 +82,9 @@
             this.miPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.miPanel.Controls.Add(this.avionA);
             this.miPanel.Controls.Add(this.avionB);
-            this.miPanel.Location = new System.Drawing.Point(300, 12);
+            this.miPanel.Location = new System.Drawing.Point(311, 12);
             this.miPanel.Name = "miPanel";
-            this.miPanel.Size = new System.Drawing.Size(465, 426);
+            this.miPanel.Size = new System.Drawing.Size(477, 426);
             this.miPanel.TabIndex = 4;
             this.miPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Simulacion_Paint);
             // 
@@ -109,11 +112,43 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnDatos
+            // 
+            this.btnDatos.Location = new System.Drawing.Point(46, 252);
+            this.btnDatos.Name = "btnDatos";
+            this.btnDatos.Size = new System.Drawing.Size(97, 23);
+            this.btnDatos.TabIndex = 7;
+            this.btnDatos.Text = "Ver Datos";
+            this.btnDatos.UseVisualStyleBackColor = true;
+            this.btnDatos.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnConflicto
+            // 
+            this.btnConflicto.Location = new System.Drawing.Point(30, 387);
+            this.btnConflicto.Name = "btnConflicto";
+            this.btnConflicto.Size = new System.Drawing.Size(142, 23);
+            this.btnConflicto.TabIndex = 8;
+            this.btnConflicto.Text = "Hay Conflicto?";
+            this.btnConflicto.UseVisualStyleBackColor = true;
+            this.btnConflicto.Click += new System.EventHandler(this.btnConflicto_Click);
+            // 
+            // lblAlarma
+            // 
+            this.lblAlarma.AutoSize = true;
+            this.lblAlarma.Location = new System.Drawing.Point(72, 335);
+            this.lblAlarma.Name = "lblAlarma";
+            this.lblAlarma.Size = new System.Drawing.Size(0, 16);
+            this.lblAlarma.TabIndex = 9;
+            this.lblAlarma.Click += new System.EventHandler(this.lblInformacion_Click);
+            // 
             // Simulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblAlarma);
+            this.Controls.Add(this.btnConflicto);
+            this.Controls.Add(this.btnDatos);
             this.Controls.Add(this.detenerSimulacion);
             this.Controls.Add(this.iniciarSimulacion);
             this.Controls.Add(this.miPanel);
@@ -125,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).EndInit();
             this.miPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,5 +172,8 @@
         private System.Windows.Forms.Button iniciarSimulacion;
         private System.Windows.Forms.Button detenerSimulacion;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnDatos;
+        private System.Windows.Forms.Button btnConflicto;
+        private System.Windows.Forms.Label lblAlarma;
     }
 }
