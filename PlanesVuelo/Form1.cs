@@ -13,6 +13,10 @@ namespace PlanesVuelo
 {
     public partial class Form1 : Form
     {
+        double valorDistanciaSeguridad;
+        double valorTiempoCiclo;
+        public static FlightPlan planA;
+        public static FlightPlan planB;
         public Form1()
         {
             InitializeComponent();
@@ -21,23 +25,29 @@ namespace PlanesVuelo
         private void planesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlanesVuelo f = new PlanesVuelo();
-            f.ShowDialog(); 
-            
+            f.ShowDialog();
+
         }
 
         private void datosDeSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DatosSimulacion F3 = new DatosSimulacion();
-            F3.ShowDialog();
-
-            double distanciaSeguridad;
-            double tiempoCiclo;
-
-            distanciaSeguridad = F3.dameDistanciaSeguridad();
-            tiempoCiclo = F3.dameTiempoCiclo();
+            DatosSimulacion f = new DatosSimulacion();
+            f.ShowDialog();
+            valorDistanciaSeguridad = f.dameDistanciaSeguridad();
+            valorTiempoCiclo = f.dameTiempoCiclo();
+            if (valorTiempoCiclo <= 0 || valorDistanciaSeguridad <= 0)
+            {
+                MessageBox.Show("Primero tienes que introducir los datos de simulación.");
+                return;
+            }
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         private void iniciarSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -52,12 +62,12 @@ namespace PlanesVuelo
             f.ponPlanA(planA);
             f.ponPlanB(planB);
             f.ponTiempoCiclo(valorTiempoCiclo);
-            f.ponDistanciaSeguridad(valorDistanciaSeguridad);   
+            f.ponDistanciaSeguridad(valorDistanciaSeguridad);
             f.ShowDialog();
 
-          
-            }
 
         }
+
     }
+}
 

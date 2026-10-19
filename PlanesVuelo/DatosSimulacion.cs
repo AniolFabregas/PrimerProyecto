@@ -29,7 +29,7 @@ namespace PlanesVuelo
         {
             return valorTiempoCiclo;
         }
-       
+
         private void DatosSimulacion_Load(object sender, EventArgs e)
         {
 
@@ -40,7 +40,7 @@ namespace PlanesVuelo
             //Assignem el valor a les variables obtingudes dels textbox
             try
             {
-                valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text);
+                valorDistanciaSeguridad = Convert.ToDouble(distanciaSeguridad.Text)*2;
 
                 valorTiempoCiclo = Convert.ToDouble(tiempoCiclo.Text);
 

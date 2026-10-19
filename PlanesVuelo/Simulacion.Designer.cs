@@ -40,43 +40,40 @@
             this.btnDatos = new System.Windows.Forms.Button();
             this.btnConflicto = new System.Windows.Forms.Button();
             this.lblAlarma = new System.Windows.Forms.Label();
+            this.Resetbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
+            this.miPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // miPanel
-            // 
-            this.miPanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.miPanel.Location = new System.Drawing.Point(238, 30);
-            this.miPanel.Name = "miPanel";
-            this.miPanel.RowHeadersWidth = 51;
-            this.miPanel.RowTemplate.Height = 24;
-            this.miPanel.Size = new System.Drawing.Size(550, 408);
-            this.miPanel.TabIndex = 0;
-            // 
             // btnMover
-            
-            this.btnMover.Location = new System.Drawing.Point(40, 77);
+            // 
+            this.btnMover.Location = new System.Drawing.Point(55, 77);
             this.btnMover.Name = "btnMover";
-            this.btnMover.Size = new System.Drawing.Size(150, 35);
+            this.btnMover.Size = new System.Drawing.Size(75, 23);
             this.btnMover.TabIndex = 1;
-            this.btnMover.Text = "Mover un ciclo";
+            this.btnMover.Text = "Ciclo";
             this.btnMover.UseVisualStyleBackColor = true;
-            this.btnMover.Click += new System.EventHandler(this.button1_Click);
+            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
             // 
             // avionA
             // 
-            this.avionA.Location = new System.Drawing.Point(280, 63);
+            this.avionA.Image = ((System.Drawing.Image)(resources.GetObject("avionA.Image")));
+            this.avionA.Location = new System.Drawing.Point(18, 21);
             this.avionA.Name = "avionA";
-            this.avionA.Size = new System.Drawing.Size(100, 50);
+            this.avionA.Size = new System.Drawing.Size(30, 30);
+            this.avionA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avionA.TabIndex = 2;
             this.avionA.TabStop = false;
+            this.avionA.Click += new System.EventHandler(this.avionA_Click);
             // 
             // avionB
             // 
-            this.avionB.Location = new System.Drawing.Point(280, 172);
+            this.avionB.Image = ((System.Drawing.Image)(resources.GetObject("avionB.Image")));
+            this.avionB.Location = new System.Drawing.Point(18, 252);
             this.avionB.Name = "avionB";
-            this.avionB.Size = new System.Drawing.Size(100, 50);
+            this.avionB.Size = new System.Drawing.Size(30, 30);
+            this.avionB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avionB.TabIndex = 3;
             this.avionB.TabStop = false;
             this.avionB.Click += new System.EventHandler(this.avionB_Click);
@@ -145,11 +142,22 @@
             this.lblAlarma.TabIndex = 9;
             this.lblAlarma.Click += new System.EventHandler(this.lblInformacion_Click);
             // 
+            // Resetbtn
+            // 
+            this.Resetbtn.Location = new System.Drawing.Point(30, 354);
+            this.Resetbtn.Name = "Resetbtn";
+            this.Resetbtn.Size = new System.Drawing.Size(142, 23);
+            this.Resetbtn.TabIndex = 10;
+            this.Resetbtn.Text = "Reiniciar";
+            this.Resetbtn.UseVisualStyleBackColor = true;
+            this.Resetbtn.Click += new System.EventHandler(this.Resetbtn_Click);
+            // 
             // Simulacion
-            
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Resetbtn);
             this.Controls.Add(this.lblAlarma);
             this.Controls.Add(this.btnConflicto);
             this.Controls.Add(this.btnDatos);
@@ -160,17 +168,15 @@
             this.Name = "Simulacion";
             this.Text = "Simulacion";
             this.Load += new System.EventHandler(this.Simulacion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.miPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).EndInit();
+            this.miPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView miPanel;
         private System.Windows.Forms.Button btnMover;
         private System.Windows.Forms.PictureBox avionA;
         private System.Windows.Forms.PictureBox avionB;
@@ -181,5 +187,6 @@
         private System.Windows.Forms.Button btnDatos;
         private System.Windows.Forms.Button btnConflicto;
         private System.Windows.Forms.Label lblAlarma;
+        private System.Windows.Forms.Button Resetbtn;
     }
 }
