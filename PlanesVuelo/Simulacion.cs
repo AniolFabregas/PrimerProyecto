@@ -301,7 +301,7 @@ namespace PlanesVuelo
             }
             else
             {
-                // VERDE: la distancia es correcta; si la derivada es positiva, además se están alejando
+                // VERDE: la distancia es correcta; si la dsdivada es positiva, además se están alejando
                 aviso = "Distancia correcta";
                 if (derivada > 0)
                     aviso = "Distancia correcta: se alejan";
