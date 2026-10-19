@@ -104,5 +104,23 @@ namespace PlanesVuelo
             // 5. TANCAR AQUEST FORMULARI per tornar a la pantalla principal
             this.Close();
         }
+
+        private void Rellenarbtn_Click(object sender, EventArgs e)
+        {
+            id1.Text = "IB123";
+            actualX1.Text = "50";
+            actualY1.Text = "50";
+            finalX1.Text = "400";
+            finalY1.Text = "300";
+            velocidad1.Text = "600";
+
+            // 2. Llegir les dades dels TextBox de l'Avió 2
+            id2.Text = "IB456";
+            coordenadaActualX2.Text = "50";
+            coordenadaActualY2.Text = "300";
+            coordenadaFinalX2.Text = "400";
+            coordenadaFinalY2.Text = "50";
+            valorVelocidad2.Text = "650";
+        }
     }
 }
