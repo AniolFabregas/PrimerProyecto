@@ -63,10 +63,21 @@ namespace PlanesVuelo
 
             avionA.Location = posicionAvion(avion1);
             avionB.Location = posicionAvion(avion2);
+
+            // NUEVO: ponemos la etiqueta de la alarma justo debajo del botón "Ver Datos" (btnDatos), donde hay sitio,
+            // porque ahora el aviso ocupa varias líneas y en su sitio de antes lo tapaba el botón "Reiniciar".
+            // btnDatos.Bottom es la Y del borde de abajo de ese botón; le sumamos 7 píxeles de margen
+            lblAlarma.Location = new Point(12, btnDatos.Bottom + 7);
+            // NUEVO: nada más abrir, ya decimos si se acercan, si se alejan o si van a perder la separación
+            ActualizarAlarma(avion1.Distance(avion2));
         }
 
         private void btnMover_Click(object sender, EventArgs e)
         {
+            // NUEVO: ANTES de mover, calculamos lo más cerca que estarán DURANTE este ciclo (con la derivada).
+            // Así, aunque en un ciclo avancen muchísimo y se crucen, no se nos escapa.
+            double minimaCiclo = avion1.DistanciaMinima(avion2, tiempoCiclo);
+
             if (!avion1.HasArrived())
             {
                 avion1.Move(tiempoCiclo);
@@ -81,16 +92,8 @@ namespace PlanesVuelo
 
             miPanel.Invalidate();
 
-            if (avion1.Distance(avion2) < distanciaSeguridad)
-            {
-                lblAlarma.Text = "¡ALERTA! Distancia de seguridad vulnerada";
-                lblAlarma.ForeColor = Color.Red;
-            }
-            else
-            {
-                lblAlarma.Text = "Distancia correcta";
-                lblAlarma.ForeColor = Color.Green;
-            }
+            // CAMBIADO: antes aquí había un if/else que solo miraba la distancia al FINAL del ciclo
+            ActualizarAlarma(minimaCiclo);
         }
 
         private void Simulacion_Paint(object sender, PaintEventArgs e)
@@ -190,6 +193,9 @@ namespace PlanesVuelo
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            // NUEVO: igual que en el botón Ciclo, ANTES de mover miramos lo más cerca que estarán durante este ciclo
+            double minimaCiclo = avion1.DistanciaMinima(avion2, tiempoCiclo);
+
             if (!avion1.HasArrived())
             {
                 avion1.Move(tiempoCiclo);
@@ -209,16 +215,8 @@ namespace PlanesVuelo
                 timer1.Stop();
             }
 
-            if (avion1.Distance(avion2) < distanciaSeguridad)
-            {
-                lblAlarma.Text = "¡ALERTA! Distancia de seguridad vulnerada";
-                lblAlarma.ForeColor = Color.Red;
-            }
-            else
-            {
-                lblAlarma.Text = "Distancia correcta";
-                lblAlarma.ForeColor = Color.Green;
-            }
+            // CAMBIADO: antes aquí había un if/else que solo miraba la distancia al FINAL del ciclo
+            ActualizarAlarma(minimaCiclo);
         }
 
         private void detenerSimulacion_Click(object sender, EventArgs e)
@@ -238,6 +236,10 @@ namespace PlanesVuelo
 
         }
 
+        // CAMBIADO: antes se movían los aviones ciclo a ciclo y solo se miraba la distancia al final
+        // de cada ciclo. Si en un ciclo avanzaban mucho, se cruzaban entre dos ciclos y decía que NO
+        // había conflicto aunque sí lo había (y con tiempo de ciclo 0, el while no acababa nunca).
+        // Ahora se calcula la distancia mínima de todo el vuelo con la derivada (DistanciaMinima de FlightPlan).
         private bool HayConflicto()
         {
             bool conflicto = false;
@@ -246,25 +248,68 @@ namespace PlanesVuelo
             avion1.Restart();
             avion2.Restart();
 
+            // lo que dura el vuelo entero: hasta que llega el último de los dos aviones
+            double tiempoTotal = Math.Max(avion1.TiempoParaLlegar(), avion2.TiempoParaLlegar());
 
-            if (avion1.Conflicto(avion2, distanciaSeguridad))
+            // lo más cerca que van a estar en todo el vuelo (sin saltarse nada entre ciclos)
+            double minima = avion1.DistanciaMinima(avion2, tiempoTotal);
+
+            // hay conflicto si en algún momento van a estar más cerca que la distancia de seguridad
+            if (minima < distanciaSeguridad)
                 conflicto = true;
 
-            // Movem els avions cicle a cicle fins que arribin a la seva destinació
-            while (!avion1.HasArrived() || !avion2.HasArrived())
-            {
-                avion1.Move(tiempoCiclo);
-                avion2.Move(tiempoCiclo);
+            // los aviones se quedan en el origen, como antes (ahora ni siquiera los hemos movido)
+            return conflicto;
+        }
 
-                if (avion1.Conflicto(avion2, distanciaSeguridad))
-                    conflicto = true;
+        // NUEVO: escribe el aviso de la alarma. Cuanto más cerca y más peligroso, más fuerte es el aviso:
+        //   verde (bien) -> amarillo (se acercan) -> naranja (van a perder la separación) -> rojo (la han perdido)
+        // minimaCiclo = lo más cerca que han estado durante el último ciclo (lo calcula quien llama a este método)
+        private void ActualizarAlarma(double minimaCiclo)
+        {
+            double distanciaAhora = avion1.Distance(avion2);                                           // la distancia ahora mismo
+            double derivada = avion1.DerivadaDistancia(avion2);                                        // negativa = se acercan, positiva = se alejan
+            double tiempoRestante = Math.Max(avion1.TiempoParaLlegar(), avion2.TiempoParaLlegar());   // lo que les falta de vuelo
+            double minimaFutura = avion1.DistanciaMinima(avion2, tiempoRestante);                      // lo más cerca que estarán a partir de ahora
+
+            string aviso;      // el texto que pondremos en la etiqueta
+            Color color;       // y el color del texto
+
+            if (distanciaAhora < distanciaSeguridad)
+            {
+                // ROJO: ahora mismo están demasiado cerca (el aviso de siempre)
+                aviso = "¡ALERTA! Distancia de\nseguridad vulnerada";
+                color = Color.Red;
+            }
+            else if (minimaCiclo < distanciaSeguridad)
+            {
+                // ROJO: ahora ya no, pero DURANTE el ciclo sí han estado demasiado cerca (se han cruzado entre dos ciclos)
+                aviso = "¡ALERTA! Separación perdida\nen el último ciclo (mín.: " + minimaCiclo.ToString("F1") + ")";
+                color = Color.Red;
+            }
+            else if (minimaFutura < distanciaSeguridad)
+            {
+                // NARANJA: todavía no, pero si nada cambia van a perder la separación
+                aviso = "PRECAUCIÓN: van a perder la\nseparación (mín. prevista: " + minimaFutura.ToString("F1") + ")";
+                color = Color.DarkOrange;
+            }
+            else if (derivada < 0)
+            {
+                // AMARILLO: se están acercando (derivada negativa), pero no llegarán a la distancia de seguridad
+                aviso = "Se acercan, sin conflicto\n(mín. prevista: " + minimaFutura.ToString("F1") + ")";
+                color = Color.DarkGoldenrod;
+            }
+            else
+            {
+                // VERDE: la distancia es correcta; si la derivada es positiva, además se están alejando
+                aviso = "Distancia correcta";
+                if (derivada > 0)
+                    aviso = "Distancia correcta: se alejan";
+                color = Color.Green;
             }
 
-            // Deixem els avions un altre cop a l'origen per a que es pugui tornar a simular
-            avion1.Restart();
-            avion2.Restart();
-
-            return conflicto;
+            lblAlarma.Text = aviso + "\nDistancia actual: " + distanciaAhora.ToString("F1");   // \n es un salto de línea
+            lblAlarma.ForeColor = color;
         }
 
         private void ColocarAviones()
