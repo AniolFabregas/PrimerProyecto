@@ -285,6 +285,30 @@ namespace PlanesVuelo
 
             ColocarAviones();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            avion1.Restart();
+            avion2.Restart();
+
+            if (!avion1.HasArrived())
+            {
+                avion1.Move(tiempoCiclo);
+                avionA.Location = posicionAvion(avion1);
+            }
+
+            if (!avion2.HasArrived())
+            {
+                avion2.Move(tiempoCiclo);
+                avionB.Location = posicionAvion(avion2);
+            }
+
+            miPanel.Invalidate();
+
+            avion1.Restart();
+            avion2.Restart();
+        }
     }
     }
 
