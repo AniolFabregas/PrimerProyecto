@@ -45,9 +45,5 @@ namespace PlanesVuelo
         {
             Close();
         }
-
-        private void ShowFlightInfo_Load(object sender, EventArgs e)
-        {
-        }
     }
 }

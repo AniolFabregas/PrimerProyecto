@@ -56,26 +56,71 @@ namespace PlanesVuelo
 
         }
 
-    
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string textoid1 = id1.Text;
-            double origX1 = Convert.ToDouble(actualX1.Text);
-            double origY1 = Convert.ToDouble(actualY1.Text);
-            double destX1 = Convert.ToDouble(finalX1.Text);
-            double destY1 = Convert.ToDouble(finalY1.Text);
-            double vel1 = Convert.ToDouble(velocidad1.Text);
+            try
+            {
+
+
+                string textoid1 = id1.Text;
+                double origX1 = Convert.ToDouble(actualX1.Text);
+                double origY1 = Convert.ToDouble(actualY1.Text);
+                double destX1 = Convert.ToDouble(finalX1.Text);
+                double destY1 = Convert.ToDouble(finalY1.Text);
+                double vel1 = Convert.ToDouble(velocidad1.Text);
+
+                // 2. Llegir les dades dels TextBox de l'Avió 2
+                string textoid2 = id2.Text;
+                double origX2 = Convert.ToDouble(coordenadaActualX2.Text);
+                double origY2 = Convert.ToDouble(coordenadaActualY2.Text);
+                double destX2 = Convert.ToDouble(coordenadaFinalX2.Text);
+                double destY2 = Convert.ToDouble(coordenadaFinalY2.Text);
+                double vel2 = Convert.ToDouble(valorVelocidad2.Text);
+
+
+
+                // 3. Crear els dos objectes FlightPlan (Fase 2)
+                FlightPlan plan1 = new FlightPlan(textoid1, origX1, origY1, destX1, destY1, vel1);
+                FlightPlan plan2 = new FlightPlan(textoid2, origX2, origY2, destX2, destY2, vel2);
+
+                Form1.planA = plan1;
+                Form1.planB = plan2;
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Error: Please enter valid numeric values for coordinates and speed.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error: {ex.Message}");
+                return;
+            }
+
+
+            // 5. TANCAR AQUEST FORMULARI per tornar a la pantalla principal
+            this.Close();
+        }
+
+        private void Rellenarbtn_Click(object sender, EventArgs e)
+        {
+            id1.Text = "IB123";
+            actualX1.Text = "50";
+            actualY1.Text = "50";
+            finalX1.Text = "400";
+            finalY1.Text = "300";
+            velocidad1.Text = "600";
 
             // 2. Llegir les dades dels TextBox de l'Avió 2
-            string textoid2 = id2.Text;
-            double origX2 = Convert.ToDouble(coordenadaActualX2.Text);
-            double origY2 = Convert.ToDouble(coordenadaActualY2.Text);
-            double destX2 = Convert.ToDouble(coordenadaFinalX2.Text);
-            double destY2 = Convert.ToDouble(coordenadaFinalY2.Text);
-            double vel2 = Convert.ToDouble(valorVelocidad2 .Text);
-
+            id2.Text = "IB456";
+            coordenadaActualX2.Text = "50";
+            coordenadaActualY2.Text = "300";
+            coordenadaFinalX2.Text = "400";
+            coordenadaFinalY2.Text = "50";
+            valorVelocidad2.Text = "650";
         }
-    } 
+    }
 }
-
