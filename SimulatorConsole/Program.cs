@@ -92,7 +92,7 @@ namespace SimulatorConsole
         // Si tot surt [OK] es que la Fase 1 funciona. Si surt algun [ERROR], algo no rula.
         static void ProbarFase1()
         {
-            Console.WriteLine("=========== PRUEBAS FASE 1 ===========");
+            Console.WriteLine(" PRUEBAS FASE 1 ");
 
 
             FlightPlan a = new FlightPlan("A", 0, 0, 300, 400, 600);
