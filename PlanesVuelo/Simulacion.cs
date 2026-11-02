@@ -26,9 +26,12 @@ namespace PlanesVuelo
 
 
 
+
         public Simulacion()
         {
             InitializeComponent();
+
+
         }
 
         // 2. Mètodes per rebre els plans de vol des de Form1
@@ -63,21 +66,10 @@ namespace PlanesVuelo
 
             avionA.Location = posicionAvion(avion1);
             avionB.Location = posicionAvion(avion2);
-
-            // NUEVO: ponemos la etiqueta de la alarma justo debajo del botón "Ver Datos" (btnDatos), donde hay sitio,
-            // porque ahora el aviso ocupa varias líneas y en su sitio de antes lo tapaba el botón "Reiniciar".
-            // btnDatos.Bottom es la Y del borde de abajo de ese botón; le sumamos 7 píxeles de margen
-            lblAlarma.Location = new Point(12, btnDatos.Bottom + 7);
-            // NUEVO: nada más abrir, ya decimos si se acercan, si se alejan o si van a perder la separación
-            ActualizarAlarma(avion1.Distance(avion2));
         }
 
         private void btnMover_Click(object sender, EventArgs e)
         {
-            // NUEVO: ANTES de mover, calculamos lo más cerca que estarán DURANTE este ciclo (con la derivada).
-            // Así, aunque en un ciclo avancen muchísimo y se crucen, no se nos escapa.
-            double minimaCiclo = avion1.DistanciaMinima(avion2, tiempoCiclo);
-
             if (!avion1.HasArrived())
             {
                 avion1.Move(tiempoCiclo);
@@ -92,8 +84,16 @@ namespace PlanesVuelo
 
             miPanel.Invalidate();
 
-            // CAMBIADO: antes aquí había un if/else que solo miraba la distancia al FINAL del ciclo
-            ActualizarAlarma(minimaCiclo);
+            if (avion1.Distance(avion2) < 2 * distanciaSeguridad)
+            {
+                lblAlarma.Text = "¡ALERTA! Distancia de seguridad vulnerada";
+                lblAlarma.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblAlarma.Text = "Distancia correcta";
+                lblAlarma.ForeColor = Color.Green;
+            }
         }
 
         private void Simulacion_Paint(object sender, PaintEventArgs e)
@@ -275,7 +275,7 @@ namespace PlanesVuelo
             string aviso;      // el texto que pondremos en la etiqueta
             Color color;       // y el color del texto
 
-            if (distanciaAhora < distanciaSeguridad)
+            if (distanciaAhora < 2 * distanciaSeguridad)
             {
                 // ROJO: ahora mismo están demasiado cerca (el aviso de siempre)
                 aviso = "¡ALERTA! Distancia de\nseguridad vulnerada";
@@ -353,6 +353,34 @@ namespace PlanesVuelo
 
             avion1.Restart();
             avion2.Restart();
+            ColocarAviones();
+
+        }
+
+        private void btnVelocidades_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();   // paramos la simulación automática si estaba en marcha
+
+            CambiarVelocidades f = new CambiarVelocidades();
+            f.ponPlanes(avion1, avion2);
+
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                // Reiniciamos la simulación con las nuevas velocidades
+                avion1.Restart();
+                avion2.Restart();
+                avionA.Location = posicionAvion(avion1);
+                avionB.Location = posicionAvion(avion2);
+                miPanel.Invalidate();
+
+                comprobado = false;   // para que al iniciar vuelva a comprobar el conflicto
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
+

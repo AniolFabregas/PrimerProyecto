@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CambiarVelocidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarVelocidades.Designer.cs">
+      <DependentUpon>CambiarVelocidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatosSimulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Simulacion.Designer.cs">
       <DependentUpon>Simulacion.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CambiarVelocidades.resx">
+      <DependentUpon>CambiarVelocidades.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DatosSimulacion.resx">
       <DependentUpon>DatosSimulacion.cs</DependentUpon>
     </EmbeddedResource>

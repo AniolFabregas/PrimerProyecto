@@ -154,8 +154,8 @@ namespace FlightLib
                 return new Position(this.currentPosition.GetX(), this.currentPosition.GetY());
             }
 
-            double distanciaRecorrida = t * this.velocidad / 60;                            
-            double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);   
+            double distanciaRecorrida = t * this.velocidad / 60;
+            double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);
 
             // si en ese tiempo ya habría llegado, estará justo en el destino
             if (distanciaRecorrida >= distanciaQueFalta)
@@ -164,11 +164,11 @@ namespace FlightLib
             }
 
             // si no, avanza en línea recta hacia el destino, también igual que en Move
-            double coseno = (this.finalPosition.GetX() - this.currentPosition.GetX()) / distanciaQueFalta;  
-            double seno = (this.finalPosition.GetY() - this.currentPosition.GetY()) / distanciaQueFalta;     
-            double x = this.currentPosition.GetX() + distanciaRecorrida * coseno;                       
-            double y = this.currentPosition.GetY() + distanciaRecorrida * seno;                           
-            return new Position(x, y);                                                                    
+            double coseno = (this.finalPosition.GetX() - this.currentPosition.GetX()) / distanciaQueFalta;
+            double seno = (this.finalPosition.GetY() - this.currentPosition.GetY()) / distanciaQueFalta;
+            double x = this.currentPosition.GetX() + distanciaRecorrida * coseno;
+            double y = this.currentPosition.GetY() + distanciaRecorrida * seno;
+            return new Position(x, y);
         }
 
         // TIEMPOPARALLEGAR
@@ -176,37 +176,37 @@ namespace FlightLib
         {
             if (this.HasArrived() || this.velocidad <= 0)
             {
-                return 0;                                                                
+                return 0;
             }
 
-            double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);  
-            return distanciaQueFalta * 60 / this.velocidad;                                  
+            double distanciaQueFalta = this.currentPosition.Distancia(this.finalPosition);
+            return distanciaQueFalta * 60 / this.velocidad;
         }
 
         // DERIVADADISTANCIA: cómo está cambiando AHORA la distancia entre este avión y el otro
         public double DerivadaDistancia(FlightPlan otro)
         {
-            double h = 0.001;                                                                      
-            double distanciaAhora = this.Distance(otro);                                            
-            double distanciaDespues = this.PosicionFutura(h).Distancia(otro.PosicionFutura(h));    
-            return (distanciaDespues - distanciaAhora) / h;                                        
+            double h = 0.001;
+            double distanciaAhora = this.Distance(otro);
+            double distanciaDespues = this.PosicionFutura(h).Distancia(otro.PosicionFutura(h));
+            return (distanciaDespues - distanciaAhora) / h;
         }
 
         // DISTANCIAMINIMA
         public double DistanciaMinima(FlightPlan otro, double tiempo)
         {
             // Cada avión va en línea recta y a velocidad constante hasta que llega
-            double llegaPrimero = Math.Min(this.TiempoParaLlegar(), otro.TiempoParaLlegar());  
-            double llegaSegundo = Math.Max(this.TiempoParaLlegar(), otro.TiempoParaLlegar());   
+            double llegaPrimero = Math.Min(this.TiempoParaLlegar(), otro.TiempoParaLlegar());
+            double llegaSegundo = Math.Max(this.TiempoParaLlegar(), otro.TiempoParaLlegar());
 
             // si solo nos piden mirar un rato (por ejemplo, un ciclo), cortamos los tramos en ese tiempo
             double finTramo1 = Math.Min(llegaPrimero, tiempo);
             double finTramo2 = Math.Min(llegaSegundo, tiempo);
 
-            double minimoTramo1 = this.DistanciaMinimaTramo(otro, 0, finTramo1);           
-            double minimoTramo2 = this.DistanciaMinimaTramo(otro, finTramo1, finTramo2);  
+            double minimoTramo1 = this.DistanciaMinimaTramo(otro, 0, finTramo1);
+            double minimoTramo2 = this.DistanciaMinimaTramo(otro, finTramo1, finTramo2);
 
-            return Math.Min(minimoTramo1, minimoTramo2);                                 
+            return Math.Min(minimoTramo1, minimoTramo2);
         }
 
         // DISTANCIAMINIMATRAMO
@@ -226,8 +226,8 @@ namespace FlightLib
 
 
 
-            double w2 = wx * wx + wy * wy;          
-            double s = 0;                         vale cualquier s
+            double w2 = wx * wx + wy * wy;
+            double s = 0;                         //vale cualquier s
             if (w2 > 0)
             {
                 s = -(rx * wx + ry * wy) / w2;      // el instante (de 0 a 1) en que la derivada vale 0
@@ -261,3 +261,5 @@ namespace FlightLib
         }
     }
 }
+
+
