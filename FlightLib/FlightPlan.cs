@@ -33,12 +33,12 @@ namespace FlightLib
 
         public string GetId()
         {
-            return this.id;               // tornem el nom del vol a qui ens l'ha demanat
+            return this.id;             
         }
 
         public void SetId(string id)
         {
-            this.id = id;                 // guardem el nom nou que ens passen
+            this.id = id;                
         }
 
         public Position GetInitialPosition()
