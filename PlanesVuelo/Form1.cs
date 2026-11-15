@@ -47,7 +47,8 @@ namespace PlanesVuelo
 
         }
 
-
+        // amb els altres camps de la classe
+        FlightPlanList lista = new FlightPlanList();
 
         private void iniciarSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -68,6 +69,32 @@ namespace PlanesVuelo
 
         }
 
+        private void cargarArchivoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            // si es cancela no es fa res
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+
+            // llegim a una llista nova, aixi si hi ha error es queda la que ja teniem
+            FlightPlanList nueva = new FlightPlanList();
+            try
+            {
+                nueva.LoadFromFile(openFileDialog1.FileName);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("El archivo tiene algun dato que no es un numero.\nFormato de cada linea: id aerolinea xInicial yInicial xFinal yFinal velocidad");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido leer el archivo: " + ex.Message);
+                return;
+            }
+
+            lista = nueva;
+            MessageBox.Show("Se han cargado " + lista.GetNumber() + " vuelos.");
+        }
     }
 }
 

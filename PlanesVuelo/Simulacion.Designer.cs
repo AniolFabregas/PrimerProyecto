@@ -161,7 +161,7 @@
             this.btnVelocidades.TabIndex = 11;
             this.btnVelocidades.Text = "Cambiar Velocidades";
             this.btnVelocidades.UseVisualStyleBackColor = true;
-            this.btnVelocidades.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnVelocidades.Click += new System.EventHandler(this.button1_Click);
             // 
             // Simulacion
             // 

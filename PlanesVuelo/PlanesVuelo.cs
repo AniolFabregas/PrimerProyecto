@@ -64,7 +64,7 @@ namespace PlanesVuelo
             {
 
 
-                string textoid1 = id1.Text;
+                int textoid1 = Convert.ToInt32(id1.Text);
                 double origX1 = Convert.ToDouble(actualX1.Text);
                 double origY1 = Convert.ToDouble(actualY1.Text);
                 double destX1 = Convert.ToDouble(finalX1.Text);
@@ -72,7 +72,7 @@ namespace PlanesVuelo
                 double vel1 = Convert.ToDouble(velocidad1.Text);
 
                 // 2. Llegir les dades dels TextBox de l'Avió 2
-                string textoid2 = id2.Text;
+                int textoid2 = Convert.ToInt32(id2.Text);
                 double origX2 = Convert.ToDouble(coordenadaActualX2.Text);
                 double origY2 = Convert.ToDouble(coordenadaActualY2.Text);
                 double destX2 = Convert.ToDouble(coordenadaFinalX2.Text);

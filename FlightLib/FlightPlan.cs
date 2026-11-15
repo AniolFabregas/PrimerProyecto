@@ -11,7 +11,8 @@ namespace FlightLib
     {
         // Atributos
 
-        string id; // identificador
+        int id; // identificador
+        string airline; // nombre de la aerolínea
         Position initialPosition; // posicion inicial
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
@@ -20,25 +21,43 @@ namespace FlightLib
         const double tolerancia = 0.001;
 
         // Constructures
-        public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
+        public FlightPlan(int id, double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
             this.id = id;
             this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
             this.velocidad = velocidad;
+            this.airline = "";
+        }
+
+        // Constructor con aerolínea (versión 2)
+        public FlightPlan(int id, string airline, double cpx, double cpy, double fpx, double fpy, double velocidad)
+            : this(id, cpx, cpy, fpx, fpy, velocidad)
+        {
+            this.airline = airline;
         }
 
         // Metodos
 
-        public string GetId()
+        public string GetAirline()
         {
-            return this.id;             
+            return this.airline;        // tornem l'aerolinia
         }
 
-        public void SetId(string id)
+        public void SetAirline(string airline)
         {
-            this.id = id;                
+            this.airline = airline;
+        }
+
+        public int GetId()
+        {
+            return this.id;
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
         }
 
         public Position GetInitialPosition()
@@ -253,6 +272,7 @@ namespace FlightLib
             Console.WriteLine("******************************");
             Console.WriteLine("Datos del vuelo: ");
             Console.WriteLine("Identificador: {0}", id);
+            Console.WriteLine("Aerolínea: {0}", airline);
             Console.WriteLine("Velocidad: {0:F2}", velocidad);
             Console.WriteLine("Posición actual: ({0:F2},{1:F2})", currentPosition.GetX(), currentPosition.GetY());
             if (this.HasArrived())
@@ -261,5 +281,3 @@ namespace FlightLib
         }
     }
 }
-
-

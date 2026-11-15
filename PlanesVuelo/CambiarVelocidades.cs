@@ -36,9 +36,9 @@ namespace PlanesVuelo
         private void CambiarVelocidades_Load(object sender, EventArgs e)
         {
             // Mostramos los datos actuales
-            lblId1.Text = plan1.GetId();
+            lblId1.Text = plan1.GetId().ToString();
             txtVel1.Text = plan1.GetVelocidad().ToString();
-            lblId2.Text = plan2.GetId();
+            lblId2.Text = plan2.GetId().ToString();
             txtVel2.Text = plan2.GetVelocidad().ToString();
         }
 
