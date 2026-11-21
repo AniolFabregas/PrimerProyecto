@@ -64,6 +64,7 @@ namespace PlanesVuelo
             f.ponPlanB(planB);
             f.ponTiempoCiclo(valorTiempoCiclo);
             f.ponDistanciaSeguridad(valorDistanciaSeguridad);
+            f.ponLista(lista);   // li passem la llista de vols perque la pugui guardar
             f.ShowDialog();
 
 

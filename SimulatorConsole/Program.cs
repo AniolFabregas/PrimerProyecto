@@ -17,7 +17,7 @@ namespace SimulatorConsole
             {
                 Console.WriteLine("Escribe el identificador");
                 //   string nombre = Console.ReadLine();
-                string identificador = Console.ReadLine(); ;
+                int identificador = Convert.ToInt32(Console.ReadLine());   // a la V2 l'id es un numero
 
                 Console.WriteLine("Escribe la velocidad");
                 double velocidad = Convert.ToDouble(Console.ReadLine());
@@ -39,7 +39,7 @@ namespace SimulatorConsole
 
                 Console.WriteLine("Escribe el identificador");
                 //   string nombre = Console.ReadLine();
-                identificador = Console.ReadLine(); ;
+                identificador = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Escribe la velocidad");
                 velocidad = Convert.ToDouble(Console.ReadLine());
@@ -69,7 +69,7 @@ namespace SimulatorConsole
 
                 while (i < ciclos)
                 {
-                    lista.Move(tiempoCiclo);
+                    lista.Mover(tiempoCiclo);
                     
                     lista.EscribeConsola();
                     if (plan_a.Conflicto(plan_b, distanciaSeguridad))
@@ -95,13 +95,13 @@ namespace SimulatorConsole
             Console.WriteLine(" PRUEBAS FASE 1 ");
 
 
-            FlightPlan a = new FlightPlan("A", 0, 0, 300, 400, 600);
+            FlightPlan a = new FlightPlan(1, 0, 0, 300, 400, 600);
 
     
-            FlightPlan b = new FlightPlan("B", 0, 400, 300, 0, 600);
+            FlightPlan b = new FlightPlan(2, 0, 400, 300, 0, 600);
 
   
-            Comprobar("GetId devuelve A", a.GetId() == "A");
+            Comprobar("GetId devuelve 1", a.GetId() == 1);
             Comprobar("GetVelocidad devuelve 600", a.GetVelocidad() == 600);
             Comprobar("Posicion inicial = (0,0)", MismaPosicion(a.GetInitialPosition(), 0, 0));
             Comprobar("Posicion actual al empezar = (0,0)", MismaPosicion(a.GetCurrentPosition(), 0, 0));
@@ -128,8 +128,8 @@ namespace SimulatorConsole
 
             a.SetVelocidad(300);
             Comprobar("SetVelocidad cambia la velocidad a 300", a.GetVelocidad() == 300);
-            a.SetId("A2");
-            Comprobar("SetId cambia el id a A2", a.GetId() == "A2");
+            a.SetId(12);
+            Comprobar("SetId cambia el id a 12", a.GetId() == 12);
             a.SetCurrentPosition(new Position(150, 200));
             Comprobar("SetCurrentPosition pone A en (150,200)", MismaPosicion(a.GetCurrentPosition(), 150, 200));
 
@@ -141,7 +141,7 @@ namespace SimulatorConsole
             Comprobar("SetInitialPosition + Restart lleva A a (10,20)", MismaPosicion(a.GetCurrentPosition(), 10, 20));
 
             //un avio que surt ja del desti. Ha de dir que ha arribat i el Move no ha de petar 
-            FlightPlan c = new FlightPlan("C", 50, 50, 50, 50, 100);
+            FlightPlan c = new FlightPlan(3, 50, 50, 50, 50, 100);
             Comprobar("Un avion con inicio = destino ya ha llegado", c.HasArrived() == true);
             c.Move(10);
             Comprobar("Move no hace nada si ya ha llegado (sigue en (50,50))", MismaPosicion(c.GetCurrentPosition(), 50, 50));

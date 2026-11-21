@@ -96,6 +96,27 @@ namespace FlightLib
             vector = nuevos;
         }
 
+        // Guarda tots els vols al fitxer que ens passen, amb el mateix format que llegeix LoadFromFile
+        // (id aerolinia x y xFinal yFinal velocitat). Com a posicio inicial posem la posicio ACTUAL,
+        // aixi quan es torni a carregar el fitxer cada avio surt des d'on s'havia quedat.
+        // Si no es pot escriure el fitxer salta una excepcio (l'avisa el formulari)
+        public void SaveToFile(string path)
+        {
+            StreamWriter w = new StreamWriter(path);   // obrim el fitxer per escriure 
+            int i = 0;
+            while (i < vector.Count)
+            {
+                FlightPlan p = vector[i];
+                // una linia per vol, separat per espais perque LoadFromFile ho pugui tornar a llegir
+                w.WriteLine(p.GetId() + " " + p.GetAirline() + " " +
+                            p.GetCurrentPosition().GetX() + " " + p.GetCurrentPosition().GetY() + " " +
+                            p.GetFinalPosition().GetX() + " " + p.GetFinalPosition().GetY() + " " +
+                            p.GetVelocidad());
+                i++;
+            }
+            w.Close();   // si no el tanquem el fitxer es pot quedar a mitges
+        }
+
         // Ordena els vols per id (de petit a gran) amb selection sort
         public void SortById()
         {
@@ -122,7 +143,7 @@ namespace FlightLib
             }
         }
 
-        // Ordena els vols pel nom de l'aerolinia (alfabeticament) amb bubble sort
+        // Ordena els vols pel nom de l'aerolinia amb bubble sort
         public void SortByAirline()
         {
             int i = 0;

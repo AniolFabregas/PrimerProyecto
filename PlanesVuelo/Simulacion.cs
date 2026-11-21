@@ -24,6 +24,8 @@ namespace PlanesVuelo
         private FlightPlan avion2;
         public double distanciaSeguridad;
 
+        FlightPlanList lista;   // la llista de vols (es la mateixa que la de Form1, no una copia)
+
 
 
 
@@ -53,6 +55,54 @@ namespace PlanesVuelo
         public void ponDistanciaSeguridad(double distancia)
         {
             distanciaSeguridad = distancia;
+        }
+
+        // Rep la llista de vols des de Form1
+        public void ponLista(FlightPlanList l)
+        {
+            lista = l;
+        }
+
+        // Boto Guardar vuelos: para la simulacio i guarda els vols en un fitxer de text per poder continuar un altre dia des d'aquest mateix punt
+        
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();   // parem el timer, si no els avions es seguirien movent mentre triem on guardar
+
+            if (lista == null || lista.GetNumber() == 0)
+            {
+                MessageBox.Show("No hay vuelos para guardar.");
+                return;
+            }
+
+            // finestra de "Guardar como" de Windows, nomes deixa triar fitxers .txt
+            SaveFileDialog dialogo = new SaveFileDialog();
+            dialogo.Filter = "Archivos de texto (*.txt)|*.txt";
+            dialogo.FileName = "vuelos_guardados.txt";
+            if (dialogo.ShowDialog() != DialogResult.OK)
+            {
+                return;   // si cancela no fem res i es pot seguir simulant
+            }
+
+            // el fitxer l'escriu la classe, aqui nomes avisem si falla (carpeta sense permis, fitxer obert...)
+            try
+            {
+                lista.SaveToFile(dialogo.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido guardar el archivo: " + ex.Message);
+                return;
+            }
+
+            // diem on s'ha guardat i com continuar, i preguntem si vol sortir (el checklist diu "salvar y salir")
+            DialogResult r = MessageBox.Show("Vuelos guardados en " + dialogo.FileName +
+                "\nPara continuar otro día, carga este archivo con Datos > Cargar Fichero.\n\n¿Quieres salir del programa?",
+                "Simulación guardada", MessageBoxButtons.YesNo);
+            if (r == DialogResult.Yes)
+            {
+                Application.Exit();   // tanca totes les finestres del programa
+            }
         }
 
         // 3. Al carregar la finestra, posicionem els PictureBox (avionA i avionB)
@@ -228,10 +278,7 @@ namespace PlanesVuelo
 
         }
 
-        // CAMBIADO: antes se movían los aviones ciclo a ciclo y solo se miraba la distancia al final
-        // de cada ciclo. Si en un ciclo avanzaban mucho, se cruzaban entre dos ciclos y decía que NO
-        // había conflicto aunque sí lo había (y con tiempo de ciclo 0, el while no acababa nunca).
-        // Ahora se calcula la distancia mínima de todo el vuelo con la derivada (DistanciaMinima de FlightPlan).
+        
         private bool HayConflicto()
         {
             bool conflicto = false;
@@ -259,9 +306,7 @@ namespace PlanesVuelo
 
         }
 
-        // NUEVO: escribe el aviso de la alarma. Cuanto más cerca y más peligroso, más fuerte es el aviso:
-        //   verde (bien) -> amarillo (se acercan) -> naranja (van a perder la separación) -> rojo (la han perdido)
-        // minimaCiclo = lo más cerca que han estado durante el último ciclo (lo calcula quien llama a este método)
+        
         private void ActualizarAlarma(double minimaCiclo)
         {
             double distanciaAhora = avion1.Distance(avion2);                                           // la distancia ahora mismo
