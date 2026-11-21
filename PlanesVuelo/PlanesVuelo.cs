@@ -107,7 +107,7 @@ namespace PlanesVuelo
 
         private void Rellenarbtn_Click(object sender, EventArgs e)
         {
-            id1.Text = "IB123";
+            id1.Text = "123";
             actualX1.Text = "50";
             actualY1.Text = "50";
             finalX1.Text = "400";
@@ -115,7 +115,7 @@ namespace PlanesVuelo
             velocidad1.Text = "600";
 
             // 2. Llegir les dades dels TextBox de l'Avió 2
-            id2.Text = "IB456";
+            id2.Text = "456";
             coordenadaActualX2.Text = "50";
             coordenadaActualY2.Text = "300";
             coordenadaFinalX2.Text = "400";

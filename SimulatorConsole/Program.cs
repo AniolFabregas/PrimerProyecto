@@ -17,7 +17,7 @@ namespace SimulatorConsole
             {
                 Console.WriteLine("Escribe el identificador");
                 //   string nombre = Console.ReadLine();
-                int identificador = Convert.ToInt32(Console.ReadLine());   // a la V2 l'id es un numero
+                int identificador = Convert.ToInt32(Console.ReadLine()); ;
 
                 Console.WriteLine("Escribe la velocidad");
                 double velocidad = Convert.ToDouble(Console.ReadLine());
@@ -39,7 +39,7 @@ namespace SimulatorConsole
 
                 Console.WriteLine("Escribe el identificador");
                 //   string nombre = Console.ReadLine();
-                identificador = Convert.ToInt32(Console.ReadLine());
+                identificador = Convert.ToInt32(Console.ReadLine()); ;
 
                 Console.WriteLine("Escribe la velocidad");
                 velocidad = Convert.ToDouble(Console.ReadLine());
@@ -128,8 +128,8 @@ namespace SimulatorConsole
 
             a.SetVelocidad(300);
             Comprobar("SetVelocidad cambia la velocidad a 300", a.GetVelocidad() == 300);
-            a.SetId(12);
-            Comprobar("SetId cambia el id a 12", a.GetId() == 12);
+            a.SetId(3);
+            Comprobar("SetId cambia el id a 3", a.GetId() == 3);
             a.SetCurrentPosition(new Position(150, 200));
             Comprobar("SetCurrentPosition pone A en (150,200)", MismaPosicion(a.GetCurrentPosition(), 150, 200));
 
@@ -141,7 +141,7 @@ namespace SimulatorConsole
             Comprobar("SetInitialPosition + Restart lleva A a (10,20)", MismaPosicion(a.GetCurrentPosition(), 10, 20));
 
             //un avio que surt ja del desti. Ha de dir que ha arribat i el Move no ha de petar 
-            FlightPlan c = new FlightPlan(3, 50, 50, 50, 50, 100);
+            FlightPlan c = new FlightPlan(4, 50, 50, 50, 50, 100);
             Comprobar("Un avion con inicio = destino ya ha llegado", c.HasArrived() == true);
             c.Move(10);
             Comprobar("Move no hace nada si ya ha llegado (sigue en (50,50))", MismaPosicion(c.GetCurrentPosition(), 50, 50));

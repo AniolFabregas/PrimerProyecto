@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Simulacion));
             this.btnMover = new System.Windows.Forms.Button();
+            this.btnDeshacer = new System.Windows.Forms.Button();
             this.avionA = new System.Windows.Forms.PictureBox();
             this.avionB = new System.Windows.Forms.PictureBox();
             this.miPanel = new System.Windows.Forms.Panel();
@@ -42,7 +43,6 @@
             this.lblAlarma = new System.Windows.Forms.Label();
             this.Resetbtn = new System.Windows.Forms.Button();
             this.btnVelocidades = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
             this.miPanel.SuspendLayout();
@@ -57,6 +57,17 @@
             this.btnMover.Text = "Ciclo";
             this.btnMover.UseVisualStyleBackColor = true;
             this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+            // 
+            // btnDeshacer
+            // 
+            this.btnDeshacer.Location = new System.Drawing.Point(30, 105);
+            this.btnDeshacer.Name = "btnDeshacer";
+            this.btnDeshacer.Size = new System.Drawing.Size(142, 23);
+            this.btnDeshacer.TabIndex = 12;
+            this.btnDeshacer.Text = "Deshacer ciclo";
+            this.btnDeshacer.UseVisualStyleBackColor = true;
+            this.btnDeshacer.Enabled = false;
+            this.btnDeshacer.Click += new System.EventHandler(this.btnDeshacer_Click);
             // 
             // avionA
             // 
@@ -162,24 +173,13 @@
             this.btnVelocidades.TabIndex = 11;
             this.btnVelocidades.Text = "Cambiar Velocidades";
             this.btnVelocidades.UseVisualStyleBackColor = true;
-            this.btnVelocidades.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(30, 222);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(133, 23);
-            this.btnGuardar.TabIndex = 12;
-            this.btnGuardar.Text = "Guardar vuelos";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnVelocidades.Click += new System.EventHandler(this.btnVelocidades_Click);
             // 
             // Simulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnVelocidades);
             this.Controls.Add(this.Resetbtn);
             this.Controls.Add(this.lblAlarma);
@@ -188,6 +188,7 @@
             this.Controls.Add(this.detenerSimulacion);
             this.Controls.Add(this.iniciarSimulacion);
             this.Controls.Add(this.miPanel);
+            this.Controls.Add(this.btnDeshacer);
             this.Controls.Add(this.btnMover);
             this.Name = "Simulacion";
             this.Text = "Simulacion";
@@ -202,6 +203,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnMover;
+        private System.Windows.Forms.Button btnDeshacer;
         private System.Windows.Forms.PictureBox avionA;
         private System.Windows.Forms.PictureBox avionB;
         private System.Windows.Forms.Panel miPanel;
@@ -213,6 +215,5 @@
         private System.Windows.Forms.Label lblAlarma;
         private System.Windows.Forms.Button Resetbtn;
         private System.Windows.Forms.Button btnVelocidades;
-        private System.Windows.Forms.Button btnGuardar;
     }
 }
