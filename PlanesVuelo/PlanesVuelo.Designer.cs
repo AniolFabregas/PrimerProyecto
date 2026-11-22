@@ -55,11 +55,12 @@
             this.coordenadaFinalY2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.valorVelocidad2 = new System.Windows.Forms.TextBox();
+            this.Rellenarbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // aceptar
             // 
-            this.aceptar.Location = new System.Drawing.Point(690, 402);
+            this.aceptar.Location = new System.Drawing.Point(690, 415);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(75, 23);
             this.aceptar.TabIndex = 0;
@@ -277,11 +278,22 @@
             this.valorVelocidad2.Size = new System.Drawing.Size(100, 22);
             this.valorVelocidad2.TabIndex = 26;
             // 
+            // Rellenarbtn
+            // 
+            this.Rellenarbtn.Location = new System.Drawing.Point(690, 386);
+            this.Rellenarbtn.Name = "Rellenarbtn";
+            this.Rellenarbtn.Size = new System.Drawing.Size(75, 23);
+            this.Rellenarbtn.TabIndex = 27;
+            this.Rellenarbtn.Text = "Rellenar";
+            this.Rellenarbtn.UseVisualStyleBackColor = true;
+            this.Rellenarbtn.Click += new System.EventHandler(this.Rellenarbtn_Click);
+            // 
             // PlanesVuelo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Rellenarbtn);
             this.Controls.Add(this.valorVelocidad2);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.coordenadaFinalY2);
@@ -346,6 +358,7 @@
         private System.Windows.Forms.TextBox coordenadaFinalY2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox valorVelocidad2;
+        private System.Windows.Forms.Button Rellenarbtn;
     }
 }
 

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Simulacion));
             this.btnMover = new System.Windows.Forms.Button();
+            this.btnDeshacer = new System.Windows.Forms.Button();
             this.avionA = new System.Windows.Forms.PictureBox();
             this.avionB = new System.Windows.Forms.PictureBox();
             this.miPanel = new System.Windows.Forms.Panel();
@@ -40,7 +41,9 @@
             this.btnDatos = new System.Windows.Forms.Button();
             this.btnConflicto = new System.Windows.Forms.Button();
             this.lblAlarma = new System.Windows.Forms.Label();
-            this.ResetBtn = new System.Windows.Forms.Button();
+            this.Resetbtn = new System.Windows.Forms.Button();
+            this.btnVelocidades = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.avionA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avionB)).BeginInit();
             this.miPanel.SuspendLayout();
@@ -55,6 +58,17 @@
             this.btnMover.Text = "Ciclo";
             this.btnMover.UseVisualStyleBackColor = true;
             this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+            // 
+            // btnDeshacer
+            // 
+            this.btnDeshacer.Enabled = false;
+            this.btnDeshacer.Location = new System.Drawing.Point(30, 105);
+            this.btnDeshacer.Name = "btnDeshacer";
+            this.btnDeshacer.Size = new System.Drawing.Size(142, 23);
+            this.btnDeshacer.TabIndex = 12;
+            this.btnDeshacer.Text = "Deshacer ciclo";
+            this.btnDeshacer.UseVisualStyleBackColor = true;
+            this.btnDeshacer.Click += new System.EventHandler(this.btnDeshacer_Click);
             // 
             // avionA
             // 
@@ -101,7 +115,7 @@
             // 
             // detenerSimulacion
             // 
-            this.detenerSimulacion.Location = new System.Drawing.Point(33, 192);
+            this.detenerSimulacion.Location = new System.Drawing.Point(33, 165);
             this.detenerSimulacion.Name = "detenerSimulacion";
             this.detenerSimulacion.Size = new System.Drawing.Size(130, 23);
             this.detenerSimulacion.TabIndex = 6;
@@ -136,34 +150,57 @@
             // lblAlarma
             // 
             this.lblAlarma.AutoSize = true;
-            this.lblAlarma.Location = new System.Drawing.Point(72, 335);
+            this.lblAlarma.Location = new System.Drawing.Point(72, 295);
             this.lblAlarma.Name = "lblAlarma";
             this.lblAlarma.Size = new System.Drawing.Size(0, 16);
             this.lblAlarma.TabIndex = 9;
             this.lblAlarma.Click += new System.EventHandler(this.lblInformacion_Click);
             // 
-            // ResetBtn
+            // Resetbtn
             // 
-            this.ResetBtn.Location = new System.Drawing.Point(30, 354);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(142, 23);
-            this.ResetBtn.TabIndex = 10;
-            this.ResetBtn.Text = "Reiniciar";
-            this.ResetBtn.UseVisualStyleBackColor = true;
-            this.ResetBtn.Click += new System.EventHandler(this.button1_Click_1);
+            this.Resetbtn.Location = new System.Drawing.Point(30, 354);
+            this.Resetbtn.Name = "Resetbtn";
+            this.Resetbtn.Size = new System.Drawing.Size(142, 23);
+            this.Resetbtn.TabIndex = 10;
+            this.Resetbtn.Text = "Reiniciar";
+            this.Resetbtn.UseVisualStyleBackColor = true;
+            this.Resetbtn.Click += new System.EventHandler(this.Resetbtn_Click);
+            // 
+            // btnVelocidades
+            // 
+            this.btnVelocidades.Location = new System.Drawing.Point(12, 415);
+            this.btnVelocidades.Name = "btnVelocidades";
+            this.btnVelocidades.Size = new System.Drawing.Size(177, 23);
+            this.btnVelocidades.TabIndex = 11;
+            this.btnVelocidades.Text = "Cambiar Velocidades";
+            this.btnVelocidades.UseVisualStyleBackColor = true;
+            this.btnVelocidades.Click += new System.EventHandler(this.btnVelocidades_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(30, 201);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(133, 23);
+            this.btnGuardar.TabIndex = 13;
+            this.btnGuardar.Text = "Guardar vuelos";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // Simulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ResetBtn);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnVelocidades);
+            this.Controls.Add(this.Resetbtn);
             this.Controls.Add(this.lblAlarma);
             this.Controls.Add(this.btnConflicto);
             this.Controls.Add(this.btnDatos);
             this.Controls.Add(this.detenerSimulacion);
             this.Controls.Add(this.iniciarSimulacion);
             this.Controls.Add(this.miPanel);
+            this.Controls.Add(this.btnDeshacer);
             this.Controls.Add(this.btnMover);
             this.Name = "Simulacion";
             this.Text = "Simulacion";
@@ -178,6 +215,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnMover;
+        private System.Windows.Forms.Button btnDeshacer;
         private System.Windows.Forms.PictureBox avionA;
         private System.Windows.Forms.PictureBox avionB;
         private System.Windows.Forms.Panel miPanel;
@@ -187,6 +225,8 @@
         private System.Windows.Forms.Button btnDatos;
         private System.Windows.Forms.Button btnConflicto;
         private System.Windows.Forms.Label lblAlarma;
-        private System.Windows.Forms.Button ResetBtn;
+        private System.Windows.Forms.Button Resetbtn;
+        private System.Windows.Forms.Button btnVelocidades;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

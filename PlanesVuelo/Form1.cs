@@ -25,8 +25,8 @@ namespace PlanesVuelo
         private void planesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlanesVuelo f = new PlanesVuelo();
-            f.ShowDialog(); 
-            
+            f.ShowDialog();
+
         }
 
         private void datosDeSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +47,8 @@ namespace PlanesVuelo
 
         }
 
-        
+        // amb els altres camps de la classe
+        FlightPlanList lista = new FlightPlanList();
 
         private void iniciarSimulaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -62,12 +63,49 @@ namespace PlanesVuelo
             f.ponPlanA(planA);
             f.ponPlanB(planB);
             f.ponTiempoCiclo(valorTiempoCiclo);
-            f.ponDistanciaSeguridad(valorDistanciaSeguridad);   
+            f.ponDistanciaSeguridad(valorDistanciaSeguridad);
+            f.ponLista(lista);   // li passem la llista de vols perque la pugui guardar
             f.ShowDialog();
 
-          
-            }
 
         }
-    }
 
+        private void cargarArchivoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            // si es cancela no es fa res
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+
+            // llegim a una llista nova, aixi si hi ha error es queda la que ja teniem
+            FlightPlanList nueva = new FlightPlanList();
+            try
+            {
+                nueva.LoadFromFile(openFileDialog1.FileName);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("El archivo tiene algun dato que no es un numero.\nFormato de cada linea: id aerolinea xInicial yInicial xFinal yFinal velocidad");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido leer el archivo: " + ex.Message);
+                return;
+            }
+
+            if (nueva.GetNumber() < 2)
+            {
+                MessageBox.Show("El archivo tiene que tener al menos 2 vuelos.");
+                return;
+            }
+
+            lista = nueva;
+            planA = lista.GetFlightPlan(0);   // la simulacio fa servir aquests dos
+            planB = lista.GetFlightPlan(1);
+
+            MessageBox.Show("Se han cargado " + lista.GetNumber() + " vuelos.\nDe momento se simulan los dos primeros.");
+
+            
+        }
+    }
+}

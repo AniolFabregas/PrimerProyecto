@@ -33,6 +33,8 @@
             this.planesDeVueloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.datosDeSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSimulaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,8 @@
             this.datosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.planesDeVueloToolStripMenuItem,
             this.datosDeSimulaciónToolStripMenuItem,
-            this.iniciarSimulaciónToolStripMenuItem});
+            this.iniciarSimulaciónToolStripMenuItem,
+            this.cargarArchivoToolStripMenuItem});
             this.datosToolStripMenuItem.Name = "datosToolStripMenuItem";
             this.datosToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.datosToolStripMenuItem.Text = "Datos";
@@ -78,6 +81,17 @@
             this.iniciarSimulaciónToolStripMenuItem.Text = "Iniciar Simulación";
             this.iniciarSimulaciónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSimulaciónToolStripMenuItem_Click);
             // 
+            // cargarArchivoToolStripMenuItem
+            // 
+            this.cargarArchivoToolStripMenuItem.Name = "cargarArchivoToolStripMenuItem";
+            this.cargarArchivoToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.cargarArchivoToolStripMenuItem.Text = "Cargar Fichero";
+            this.cargarArchivoToolStripMenuItem.Click += new System.EventHandler(this.cargarArchivoToolStripMenuItem_Click_1);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -102,5 +116,7 @@
         private System.Windows.Forms.ToolStripMenuItem planesDeVueloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem datosDeSimulaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarSimulaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarArchivoToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

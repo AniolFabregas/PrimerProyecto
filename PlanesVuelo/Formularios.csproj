@@ -33,8 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\SQLite\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CambiarVelocidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarVelocidades.Designer.cs">
+      <DependentUpon>CambiarVelocidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatosSimulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +81,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs" />
     <Compile Include="PlanesVuelo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +93,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs" />
     <Compile Include="ShowFlightInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +109,10 @@
     <Compile Include="Simulacion.Designer.cs">
       <DependentUpon>Simulacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserDataBase.cs" />
+    <EmbeddedResource Include="CambiarVelocidades.resx">
+      <DependentUpon>CambiarVelocidades.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DatosSimulacion.resx">
       <DependentUpon>DatosSimulacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +125,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx" />
     <EmbeddedResource Include="PlanesVuelo.resx">
       <DependentUpon>PlanesVuelo.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +138,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegisterForm.resx" />
     <EmbeddedResource Include="ShowFlightInfo.resx">
       <DependentUpon>ShowFlightInfo.cs</DependentUpon>
     </EmbeddedResource>
